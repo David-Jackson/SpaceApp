@@ -14,8 +14,7 @@ import java.util.ArrayList;
  */
 
 public class RocketAdapter extends RecyclerView.Adapter<RocketAdapter.ViewHolder> {
-    private String[] mRocketData;
-    private ArrayList<RocketData> rocketData;
+    private ArrayList<RocketData> rocketData = null;
     private Context context;
 
     public RocketAdapter(Context context, ArrayList<RocketData> dataArrayList){
@@ -39,10 +38,10 @@ public class RocketAdapter extends RecyclerView.Adapter<RocketAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        if (null == mRocketData){
-        return 0 ;
-    } else {
-            return mRocketData.length;
+        if (null == rocketData){
+            return 0 ;
+        } else {
+            return rocketData.size();
         }
     }
 
@@ -58,5 +57,9 @@ public class RocketAdapter extends RecyclerView.Adapter<RocketAdapter.ViewHolder
             mFlightYear = (TextView)itemView.findViewById(R.id.tv_flight_year);
             mFlightNumber = (TextView)itemView.findViewById(R.id.tv_flight_number);
         }
+    }
+
+    public void setRocketData(ArrayList<RocketData> arrayList) {
+        this.rocketData = arrayList;
     }
 }
