@@ -13,21 +13,27 @@ import java.util.ArrayList;
 
 public class JsonHelperUtils {
 
+    private String TAG = "JsonHelperUtils";
+    
     public static ArrayList<RocketData> getSimpleSpaceJsonData(Context context, String spaceJsonStr) throws JSONException {
         ArrayList<RocketData> parsedSpaceData = new ArrayList<>();
 
-            JSONObject spaceJson = new JSONObject(spaceJsonStr);
-        // TODO: 1/12/2018 Come back and fix 
+        JSONArray spaceJson = new JSONArray(spaceJsonStr);
+        
+        for (int i = 0; i < spaceJson.length(); i++) {
+            JSONObject jsonObject = spaceJson.getJSONObject(i);
 
-            String  flight_number = spaceJson.getString("flight_number");
-            String launch_year = spaceJson.getString("launch_year");
+            String flight_number = jsonObject.getString("flight_number");
+            String launch_year = jsonObject.getString("launch_year");
 
-            JSONObject rocketSection = spaceJson.getJSONObject("rocket");
+            JSONObject rocketSection = jsonObject.getJSONObject("rocket");
 
             String rocket_name = rocketSection.getString("rocket_name");
 
-            RocketData rocketData = new RocketData(rocket_name,flight_number, launch_year);
+            Log.d(TAG, "getSimpleSpaceJsonData: Rocket: " + rocket_name + " - " +  flight_number + " - " +  launch_year);
+            RocketData rocketData = new RocketData(rocket_name, flight_number, launch_year);
             parsedSpaceData.add(rocketData);
+        }
 
         return parsedSpaceData;
     }
