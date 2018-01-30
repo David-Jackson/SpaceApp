@@ -1,6 +1,7 @@
 package com.wordpress.ayo218.spacenews;
 
 import android.content.Context;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 public class JsonHelperUtils {
 
-    private String TAG = "JsonHelperUtils";
+    public static String TAG = "JsonHelperUtils";
     
     public static ArrayList<RocketData> getSimpleSpaceJsonData(Context context, String spaceJsonStr) throws JSONException {
         ArrayList<RocketData> parsedSpaceData = new ArrayList<>();
