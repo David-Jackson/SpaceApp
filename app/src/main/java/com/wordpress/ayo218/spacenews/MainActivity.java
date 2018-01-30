@@ -94,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         protected void onPostExecute(ArrayList<RocketData> s) {
             progressBar.setVisibility(View.INVISIBLE);
             if (s != null){
+                adapter.setRocketData(s);
+                adapter.notifyDataSetChanged();
                 showSpaceData();
                 errorMessage.setText("hei");
             } else{
